@@ -1,0 +1,31 @@
+version: '3'
+
+tasks:
+  new:article:
+    desc:
+      create new article.
+      task new:article
+    dir: $HOME/note
+    cmds:
+      - note-cli create article -a Junichi.Y -t .
+  new:image:
+    desc: 
+        create new article image.
+        task new:image -- [directory name] 
+    dir: $HOME/note
+    cmds:
+      - |
+        DIR={{.DIR}}
+        [[ $DIR == */ ]] && DIR="${DIR%/}"
+
+        # TEMPLATE_NUM=$((RANDOM % 3 + 1))
+        TEMPLATE_NUM=$(ruby -e 'puts rand(1..3)')
+        OUTPUT=$DIR/output.png
+        ARTICLE=$DIR/$DIR.md
+
+        echo $TEMPLATE_NUM
+
+        note-cli create image -i ./icon.png --template $TEMPLATE_NUM -o $OUTPUT $ARTICLE
+    vars:
+      DIR:
+        sh: echo {{.CLI_ARGS}}

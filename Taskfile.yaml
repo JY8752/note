@@ -2,16 +2,12 @@ version: '3'
 
 tasks:
   new:article:
-    desc:
-      create new article.
-      task new:article
+    desc: create new article. [command] task new:article
     dir: $HOME/note
     cmds:
       - note-cli create article -a Junichi.Y -t .
   new:image:
-    desc: 
-        create new article image.
-        task new:image -- [directory name] 
+    desc: create new article image. [command] task new:image -- [directory name] 
     dir: $HOME/note
     cmds:
       - |

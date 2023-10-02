@@ -6,9 +6,13 @@ tasks:
     dir: $HOME/note
     cmds:
       - note-cli create article -a Junichi.Y -t .
+    silent: true
   new:image:
     desc: create new article image. [command] task new:image -- [directory name] 
     dir: $HOME/note
+    preconditions:
+      - sh: command -v ruby
+        msg: This command requires ruby.Please install ruby.
     cmds:
       - |
         DIR={{.CLI_ARGS}}
@@ -20,3 +24,4 @@ tasks:
         ARTICLE=$DIR/$DIR.md
 
         note-cli create image -i ./icon.png --template $TEMPLATE_NUM -o $OUTPUT $ARTICLE
+    silent: true

@@ -15,7 +15,7 @@ tasks:
     dir: $HOME/note
     cmds:
       - |
-        DIR={{.DIR}}
+        DIR={{.CLI_ARGS}}
         [[ $DIR == */ ]] && DIR="${DIR%/}"
 
         # TEMPLATE_NUM=$((RANDOM % 3 + 1))
@@ -23,9 +23,4 @@ tasks:
         OUTPUT=$DIR/output.png
         ARTICLE=$DIR/$DIR.md
 
-        echo $TEMPLATE_NUM
-
         note-cli create image -i ./icon.png --template $TEMPLATE_NUM -o $OUTPUT $ARTICLE
-    vars:
-      DIR:
-        sh: echo {{.CLI_ARGS}}
